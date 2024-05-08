@@ -55,10 +55,10 @@ while running:
   screen.fill((255, 255, 255))
 
   
-  cntTxt = font.render(f"Score: {count}", True, RED)
+  # cntTxt = font.render(f"Score: {count}", True, RED)
 
-  screen.blit(cntTxt, (190, 100))
-  buttonFunc("click!", 175, 150, 50, 40, GREEN)
+  # screen.blit(cntTxt, (190, 100))
+  # buttonFunc("click!", 175, 150, 50, 40, GREEN)
 
   # pygame.display.update()
   pygame.display.flip()
