@@ -48,8 +48,6 @@ def alphaCheck(userInput):
       temp += alpha[i]+ " "
     else:
       temp2 += alpha[i]+ " "
-  # print(temp)
-  # print(temp2)
 
 def ansCheck(userInput): # 정답 체크
   global randomWord
