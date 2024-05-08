@@ -20,6 +20,8 @@ import random
 
 # -----------------------------------------------------------
 # 게임 준비
+game = False
+gameCnt = 0
 heart = 5 #목숨
 topic = "fruit" #주제 나중에 배열로 만들 예정
 words = ["APPLE", "BANANA", "ORANGE", "MANDARIN", "MELON"] #게임 단어
@@ -34,51 +36,79 @@ def emptyWord(len):
   for i in range(0, len):
     global userAns
     userAns.append("__")
-  # print(" ".join(userAns))
+  print(" ".join(userAns))
 
 def alphaCheck(userInput):
   temp = ""
   temp2 = ""
   global alpha
-  if alpha.index(userInput) != -1:
-    alpha[alpha.index(userInput)] = ""
+  userIdx =  list(filter(lambda n: alpha[n] == userInput, range(len(alpha))))
+
+  if len(userIdx) != 0:
+  #   alpha[alpha.index(userInput)] = ""
+    for i in userIdx:
+      alpha[i] = " "
   
   for i in range(len(alpha)):
     if i < len(alpha) / 2:
       temp += alpha[i]+ " "
     else:
       temp2 += alpha[i]+ " "
-  # print(temp)
-  # print(temp2)
+  print(temp)
+  print(temp2)
+
 
 def ansCheck(userInput): # 정답 체크
   global randomWord
+  global heart
+  global gameCnt
+  flag = False
   for i in range(wordLen):
     if randomWord.find(userInput) != -1:
       checkIdx = randomWord.find(userInput)
       userAns[checkIdx] = userInput
       randomWord = randomWord.replace(userInput, "0", 1)
-      print(" ".join(userAns))
+      flag = True
+      gameCnt+=1
+
+  print(" ".join(userAns))
+  if not flag:
+    heart -= 1
       
 
 def paint(heart): #행맨 그리기 아마 나중에는 그림 그리는 메소드 이용 예정
   if(heart == 5):
-    print()
+    print("남은 목숨 {}개".format(heart-1))
   elif(heart == 4):
-    paint()
+    print("남은 목숨 {}개".format(heart-1))
   elif(heart == 3):
-    print()
+    print("남은 목숨 {}개".format(heart-1))
   elif(heart == 2):
-    print()
+    print("남은 목숨 {}개".format(heart-1))
   else:
-    print()
+    print("남은 목숨 {}개".format(heart-1))
 
 
-emptyWord(wordLen) #단어 길이 만큼 빈칸 만들기
-alphaCheck("P") #알파벳 보기 담당
-ansCheck("P")
+# emptyWord(wordLen) #단어 길이 만큼 빈칸 만들기
+# alphaCheck("P") #알파벳 보기 담당
+# ansCheck("P")
 
 # print(alpha.index("A"))
+
+
+emptyWord(wordLen)
+userInput = ""
+
+while(heart != 0 or game):
+  if(gameCnt == wordLen) :
+    break
+
+  print("\n 목숨 {}/5".format(heart))
+  print("\n 남은 알파벳 \n")
+  alphaCheck(userInput)
+  print("\n")
+  userInput = input("알파벳을 적어주세요 ").upper()
+  ansCheck(userInput)
 
 
 #main
