@@ -23,12 +23,12 @@ RED = (255, 0, 0)
 # 게임 준비
 game = False
 gameCnt = 0
-heart = 10 #목숨
+heart = 6 #목숨
 alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X","Y","Z"]
 topic = "fruit" #주제 나중에 배열로 만들 예정
 words = ["APPLE", "BANANA", "ORANGE", "MANDARIN", "MELON", "GRAPE", "GRAPEFRUIT", "ABOCADO", "BLUEBERRY", "COCONUT", "LEMON", "KIWI", "MANGO", "PAPAYA", "PEACH", "PEAR", "PLUM", "TANGERINE"] #게임 단어
-# randomWord =words[random.randint(0, len(words)-1)] # 랜덤 숫자
-randomWord = "APPLE"
+randomWord =words[random.randint(0, len(words)-1)] # 랜덤 숫자
+# randomWord = "APPLE"
 wordLen = len(randomWord) #단어 길이
 
 userAns = []
@@ -81,29 +81,26 @@ def ansCheck(userInput): # 정답 체크
       
 
 def paint(heart): #행맨 그리기 아마 나중에는 그림 그리는 메소드 이용 예정
-  if heart < 10:
-    pygame.draw.circle(screen, BLACK, (555, 190), 30, 5)#머리
-  if heart < 9:
-    pygame.draw.line(screen, BLACK, (555, 220), (555, 290), 5) #몸
-  if heart < 8:
-    pygame.draw.line(screen, BLACK, (555, 220), (530, 300), 5) #팔1
-  if heart < 7:
-    pygame.draw.line(screen, BLACK, (555, 220), (580, 300), 5) #팔2
   if heart < 6:
-    pygame.draw.line(screen, BLACK, (555, 290), (530, 370), 5) #다리1
+    pygame.draw.circle(screen, BLACK, (555, 190), 30, 5)#머리
   if heart < 5:
-    pygame.draw.line(screen, BLACK, (555, 290), (580, 370), 5) #다리2
+    pygame.draw.line(screen, BLACK, (555, 220), (555, 290), 5) #몸
   if heart < 4:
+    pygame.draw.line(screen, BLACK, (555, 220), (530, 300), 5) #팔1
+    pygame.draw.line(screen, BLACK, (555, 220), (580, 300), 5) #팔2
+  if heart < 3:
+    pygame.draw.line(screen, BLACK, (555, 290), (530, 370), 5) #다리1
+    pygame.draw.line(screen, BLACK, (555, 290), (580, 370), 5) #다리2
+  if heart < 2:
     pygame.draw.line(screen, BLACK, (540, 175), (550, 190), 5)
     pygame.draw.line(screen, BLACK, (550, 175), (540, 190), 5) # 눈
-  if heart < 3:
     pygame.draw.line(screen, BLACK, (560, 175), (570, 190), 5)
     pygame.draw.line(screen, BLACK, (570, 175), (560, 190), 5) # 눈
-  if heart < 2:
-    pygame.draw.line(screen, BLACK, [540,195], [570, 195], 3) #입
   if heart < 1:
+    pygame.draw.line(screen, BLACK, [540,195], [570, 195], 3) #입
     pygame.draw.arc(screen, BLACK, [555, 180, 10, 30], pi,3*pi/2, 2)
     pygame.draw.arc(screen, BLACK, [555, 180, 15, 30], 3*pi/2, 2*pi, 2) #혀
+
 
 
 
@@ -160,7 +157,7 @@ while running:
 
   #------------------------------------------------------주제 출력
 
-  remainHeart = font.render("목숨 {}/10".format(heart), True, BLACK)
+  remainHeart = font.render("목숨 {}/6".format(heart), True, BLACK)
   screen.blit(remainHeart, (50, 40)) 
   #------------------------------------------------목숨 출력
 
